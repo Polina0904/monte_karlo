@@ -1,26 +1,42 @@
 #include <sciplot/sciplot.hpp>
-#include "main.cpp"
 using namespace sciplot;
 
 
-int graficc(int argc, char** argv) {
-    Vec x = linspace(-2.0, 4.0, 100);
-    Vec x1 = {0, 0, 0, 2, 1, 3, 2, 0.5, 0.3, 2, 0, 0.8};
-    Vec y = {0, 0.5, 0.5, 2, 2, 1, 0, 0.3, 0.4, 0.2};
-    Vec a = {-3, -3, 3, -3};
-    Vec b = {0, 2, 0, 0};
+int grafic_function( float left, float right, float top, std::vector <float> x_vec, std::vector <float> y_vec,
+                 std::vector<float> a_vec, std::vector<float> b_vec, std::vector<float> vect ) {
+    Vec x = linspace(left, right, 100);
 
     Plot plot;
 
-    //plot.drawCurve(x, std::cos(x)).label("cos(x)");
-    //plot.drawCurve(x, exp(x)).label("exp(x)");
-    plot.drawCurve(x, 7 * pow(x, 4) + 0 * x + 33).label("7*x^4+33");
-    // plot.drawCurve(x, sqrt(x)).label("sqrt(x)");
-    // plot.drawStepsChangeFirstX(a,b).label("granica").lineColor("green");
     plot.autoclean(false);
-    //plot.drawPoints(x1,y).label("");
-
+    plot.xrange(left, right);
+    plot.yrange(0.0,top);
+    plot.drawCurve(x, (vect[0]*pow(vect[1],vect[2]*x)+vect[3]*pow(x,vect[4])+
+                       vect[5]*pow(sin(vect[6]*x),vect[7])+vect[8]*pow(cos(vect[9]*x),vect[10])+
+                       vect[11]*pow(tan(vect[12]*x),vect[13])+vect[14])).label("function").lineColor("blue");
+    plot.drawStepsChangeFirstX(a_vec,b_vec).label("granica").lineColor("orange");
+    plot.drawPoints(x_vec,y_vec).label("").lineColor("magenta").pointType(7);
     plot.show();
     //plot.save("gr_f.pdf");
-
+    return 0;
 }
+//int granicy(){
+//
+//    Vec a = {-3, -3, 3, -3};
+//    Vec b = {0, 2, 0, 0};
+//
+//    Plot plot;
+//    plot.drawStepsChangeFirstX(a,b).label("granica").lineColor("green");
+//    plot.show();
+//    //plot.save("gr_f.pdf");
+//    return 0;
+//}
+
+//int point(std::vector <float> x_vec, std::vector <float> y_vec, Plot plot){
+//
+//    plot.autoclean(false);
+//    plot.drawPoints(x_vec,y_vec).label("");
+//    plot.show();
+//    return 0;
+//    //plot.save("gr_f.pdf")
+//}
