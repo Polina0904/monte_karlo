@@ -8,7 +8,6 @@ int grafic_function( float left, float right, float top, std::vector <float> x_v
 
     Plot plot;
 
-    plot.autoclean(false);
     plot.xrange(left, right);
     plot.yrange(0.0,top);
     plot.drawCurve(x, (vect[0]*pow(vect[1],vect[2]*x)+vect[3]*pow(x,vect[4])+
@@ -21,7 +20,7 @@ int grafic_function( float left, float right, float top, std::vector <float> x_v
     return 0;
 }
 int research_grap(int n, std::vector<double> accuracy){
-    Vec x = linspace(0.0, 100, 100);
+    Vec x = linspace(0.0, 100000000.0, 100);
 
     std::vector<int> vec_n;
     for (int i; i < n; i++) {
@@ -30,10 +29,10 @@ int research_grap(int n, std::vector<double> accuracy){
 
     Plot plot;
 
-    plot.autoclean(false);
-    plot.yrange(0.0,10.0);
+    plot.yrange(0.0,1.0);
     plot.drawStepsChangeFirstX(vec_n , accuracy).label("").lineColor("green");
     plot.show();
+    //plot.save("gr_f.pdf");
     return 0;
 }
 //int granicy(){
