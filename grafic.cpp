@@ -3,7 +3,7 @@ using namespace sciplot;
 
 
 int grafic_function( float left, float right, float top, std::vector <float> x_vec, std::vector <float> y_vec,
-                 std::vector<float> a_vec, std::vector<float> b_vec, std::vector<float> vect ) {
+                 std::vector<float> a_vec, std::vector<float> b_vec,  float vect[] ) {
     Vec x = linspace(left, right, 100);
 
     Plot plot;
@@ -18,6 +18,22 @@ int grafic_function( float left, float right, float top, std::vector <float> x_v
     plot.drawPoints(x_vec,y_vec).label("").lineColor("magenta").pointType(7);
     plot.show();
     //plot.save("gr_f.pdf");
+    return 0;
+}
+int research_grap(int n, std::vector<double> accuracy){
+    Vec x = linspace(0.0, 100, 100);
+
+    std::vector<int> vec_n;
+    for (int i; i < n; i++) {
+        vec_n.push_back(i);
+    }
+
+    Plot plot;
+
+    plot.autoclean(false);
+    plot.yrange(0.0,10.0);
+    plot.drawStepsChangeFirstX(vec_n , accuracy).label("").lineColor("green");
+    plot.show();
     return 0;
 }
 //int granicy(){
